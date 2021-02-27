@@ -27,17 +27,18 @@ export default function EditorMenuContainer() {
             {item.contextMenu.length >= 1 && (
               <ContextMenu id={item.id}>
                 {item.contextMenu.map((context, index) => (
-                  <MenuItem
-                    key={index}
-                    data={{ foo: "bar" }}
-                    onClick={handleContextClick}
-                  >
-                    {context.title}
-                    {console.log(context.divider)}
-                    <di>
-                      {context.divider === "true" && <MenuItem divider />}
-                    </di>
-                  </MenuItem>
+                  <div key={index}>
+                    <MenuItem
+                      key={index}
+                      data={{ foo: "bar" }}
+                      onClick={handleContextClick}
+                    >
+                      {context.title}
+                      <div>
+                        {context.divider === "true" && <MenuItem divider />}
+                      </div>
+                    </MenuItem>
+                  </div>
                 ))}
               </ContextMenu>
             )}

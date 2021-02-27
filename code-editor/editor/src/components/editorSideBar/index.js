@@ -1,6 +1,22 @@
 import React from "react";
-import { Container } from "./styles/editorSideBar";
+import { Container, Image, Frame, Title, Inner } from "./styles/editorSideBar";
 
 export default function EditorSideBar({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
 }
+
+EditorSideBar.Image = function EditorSideBarImage({ ...restProps }) {
+  return <Image {...restProps} />;
+};
+
+EditorSideBar.Frame = function EditorSideBarFrame({ children, ...restProps }) {
+  return <Frame {...restProps}>{children}</Frame>;
+};
+
+EditorSideBar.Title = function EditorSideBarTitle({ children, ...restProps }) {
+  return <Title {...restProps}>{children}</Title>;
+};
+
+EditorSideBar.Inner = function EditorSideBarInner({ children, ...restProps }) {
+  return <Inner {...restProps}>{children}</Inner>;
+};
