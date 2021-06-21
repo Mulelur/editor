@@ -50,6 +50,7 @@ export default function EditorModalContainer() {
                       });
                     }}
                   >
+                    <EditorModal.Image src={item.icon} />
                     <EditorModal.PreviewTitle>
                       {item.module}
                     </EditorModal.PreviewTitle>

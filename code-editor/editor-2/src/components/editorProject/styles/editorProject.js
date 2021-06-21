@@ -18,7 +18,11 @@ export const Title = styled.h4`
 
 export const Text = styled.p``;
 
-export const Image = styled.img``;
+export const Image = styled.img`
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-right: 0.4rem;
+`;
 
 export const TreeContent = styled.div`
   margin: 0px 5px;

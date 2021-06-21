@@ -104,4 +104,8 @@ export const IconWapper = styled.div`
   }
 `;
 
-export const Image = styled.img``;
+export const Image = styled.img`
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-left: 0.4rem;
+`;

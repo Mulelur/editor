@@ -88,15 +88,15 @@ export default function EditorContainer() {
             console.log(state.selectedArry);
             return { ...state };
           case "file":
-            // const language = { ...getExtenton(action.payload.title) };
+            const language = { ...getExtenton(action.payload.title) };
             const newFileItem = {
               id: `${Date.now()}`,
               leaf: true,
               module: action.payload.title,
               value: "",
               mode: "saved",
-              language: "html",
-              icon: "",
+              language: language.language,
+              icon: language.icon,
             };
 
             const newFileTree = _.mapDeep(
