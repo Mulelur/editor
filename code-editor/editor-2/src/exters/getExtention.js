@@ -4,7 +4,7 @@ import defaultIcon from "../assets/Licons/format_align_left_black_24dp 1.svg";
 import html from "../assets/Licons/file_type_html.svg";
 import json from "../assets/Licons/file_type_json.svg";
 import php from "../assets/Licons/file_type_php3.svg";
-import python from "../assets/Licons/file_type_python.svg";
+import python from "../assets/Licons/file_type_pytyped.svg";
 import scss from "../assets/Licons/file_type_scss.svg";
 import typeScript from "../assets/Licons/file_type_typescript.svg";
 import rollup from "../assets/Licons/file_type_rollup.svg";

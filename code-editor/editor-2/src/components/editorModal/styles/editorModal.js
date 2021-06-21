@@ -98,7 +98,7 @@ export const IconWapper = styled.div`
   width: 21px;
   height: 21px;
   transition: opacity 0.1s;
-
+  opacity: ${({ mode }) => (mode === "saved" ? "0" : "1")};
   &:hover {
     opacity: 0;
   }

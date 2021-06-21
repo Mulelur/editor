@@ -12,6 +12,7 @@ import { ContextMenuTrigger } from "react-contextmenu";
 import { EditorContextTree } from "../context/editorContext";
 import _ from "lodash";
 import deepdash from "deepdash";
+import { KeyboardArrowDown } from "@material-ui/icons";
 
 deepdash(_);
 

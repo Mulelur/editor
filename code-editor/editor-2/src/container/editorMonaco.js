@@ -18,12 +18,23 @@ export default function EditorMonacoContainer() {
     });
     // console.log(value);
   }
+
   return (
-    <EditorMonaco>
+    <EditorMonaco
+      onKeyDown={(e) => {
+        if (e.ctrlKey && e.keyCode === 83) {
+          e.preventDefault();
+          dispatch({ type: "activeFile", payload: { type: "save" } });
+        }
+      }}
+      preView={state.preView}
+      width={state.media.width}
+    >
       {state.activeFile.id ? (
         <Editor
-          width="calc(100vw - 250px)"
-          height="calc(100vh - 96px)"
+          onKeyDown={(e) => {
+            console.log(e);
+          }}
           theme="vs-dark"
           defaultLanguage={language}
           defaultValue={value}

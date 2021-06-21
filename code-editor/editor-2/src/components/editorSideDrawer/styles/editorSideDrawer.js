@@ -8,6 +8,9 @@ export const Container = styled.div`
   color: #cccccc;
   font-size: 14px;
   border-right: 1px solid #3d3636;
+  @media (max-width: 639px) {
+    display: none;
+  }
 `;
 
 export const Inner = styled.div`

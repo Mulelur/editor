@@ -3,14 +3,17 @@
     "title": "File",
     "id": "1",
     "contextMenu": [
-      { "title": "New File", "divider": "false" },
-      { "title": "New Window", "divider": "false" }
+      { "title": "New File", "divider": "false", "keybind": "" },
+      { "title": "New Window", "divider": "true", "keybind": "" },
+      { "title": "save", "divider": "false", "keybind": "ctrl+S" }
     ]
   },
   {
     "title": "Edit",
     "id": "2",
     "contextMenu": [
+      { "title": "Undo", "divider": "false", "keybind": "ctrl+Z" },
+      { "title": "Redo", "divider": "true", "keybind": "ctrl+Y" },
       { "title": "Undo", "divider": "false" },
       { "title": "Redo", "divider": "true" },
       { "title": "Cut", "divider": "false" },

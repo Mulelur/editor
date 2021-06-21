@@ -6,6 +6,7 @@ import {
   DotIcon,
   EditorkeyboardControl,
   EditorSplitWindowIcon,
+  PreviewIcon,
 } from "../utils/icons/editorProjectIcons";
 
 export default function EditorModalContainer() {
@@ -32,7 +33,7 @@ export default function EditorModalContainer() {
                       }}
                     >
                       <ClearIcon width="16" height="16" fill="#ccc" />
-                      <EditorModal.IconWapper>
+                      <EditorModal.IconWapper mode={state.activeFile.mode}>
                         <DotIcon />
                       </EditorModal.IconWapper>
                     </EditorModal.Delete>
@@ -72,6 +73,7 @@ export default function EditorModalContainer() {
         </EditorModal.FrameContainer>
         <EditorModal.Actions>
           <EditorSplitWindowIcon />
+          <PreviewIcon />
           <EditorkeyboardControl />
         </EditorModal.Actions>
       </EditorModal.Inner>

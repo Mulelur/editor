@@ -33,7 +33,12 @@ export default function EditorMenuContainer() {
                       data={{ foo: "bar" }}
                       onClick={handleContextClick}
                     >
-                      {context.title}
+                      <EditorMenu.Row>
+                        <EditorMenu.ContextItem>
+                          {context.title}
+                        </EditorMenu.ContextItem>
+                        {context.keybind}
+                      </EditorMenu.Row>
                     </MenuItem>
                     <div>
                       {context.divider === "true" && <MenuItem divider />}

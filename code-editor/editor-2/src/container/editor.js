@@ -10,13 +10,14 @@ import deepdash from "deepdash";
 import EditorModalContainer from "./editorModal";
 import { getExtenton } from "../exters/getExtention";
 import js from "../assets/Licons/file_type_js.svg";
+import EditorPreviewContainer from "./editorPreview";
 
 deepdash(_);
 
 export default function EditorContainer() {
   const initialTreeState = {
     id: "react-ui-tree",
-    module: "react-ui-tree",
+    module: "Explorer",
     children: [],
     collapsed: true,
   };
@@ -38,10 +39,11 @@ export default function EditorContainer() {
       { type: "encoding", value: "UTF-8" },
       { type: "lndentation", value: "2" },
     ],
+    preView: true,
+    media: { width: "50" },
     sender: "",
   };
   const reducer = (state = initialState, action) => {
-    console.log(state.activeFile);
     switch (action.type) {
       case "activeFile":
         switch (action.payload.type) {
@@ -50,7 +52,9 @@ export default function EditorContainer() {
             state.activeFile.value = action.payload.value;
             state.activeFile.mode = "unSaved";
             return { ...state };
-
+          case "save":
+            state.activeFile.mode = "saved";
+            return { ...state };
           default:
             throw new Error();
         }
@@ -204,10 +208,11 @@ export default function EditorContainer() {
             return { ...state };
           case "addItem":
             state.selectedArry.push(action.payload.value);
-            state.activeFile.file = action.payload.value;
+            state.activeFile = action.payload.value;
+            state.activeFile.mode = "preview";
             return { ...state };
           case "setActive":
-            state.activeFile.file = action.payload.value;
+            state.activeFile = action.payload.value;
             return { ...state };
           default:
             throw new Error();
@@ -227,10 +232,13 @@ export default function EditorContainer() {
         <EditorMenuContainer />
         <Editor.Row>
           <EdiortSideContainer />
-          <Editor.Col>
-            <EditorModalContainer />
-            <EditorMonacoContainer />
-          </Editor.Col>
+          <Editor.Row>
+            <Editor.Col>
+              <EditorModalContainer />
+              <EditorMonacoContainer />
+            </Editor.Col>
+            <EditorPreviewContainer />
+          </Editor.Row>
         </Editor.Row>
         <EditorWorkBenchContainer />
       </Editor>

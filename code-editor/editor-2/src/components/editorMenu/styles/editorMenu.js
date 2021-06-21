@@ -13,3 +13,11 @@ export const Title = styled.p`
     color: #81cdeb;
   }
 `;
+
+export const Row = styled.div`
+  display: flex;
+`;
+
+export const ContextItem = styled.div`
+  margin-right: auto;
+`;

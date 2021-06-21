@@ -147,3 +147,50 @@ export function DotIcon({ ...restProps }) {
     </svg>
   );
 }
+
+export function keyboardArrowDown() {
+  return (
+    <svg
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="#CCCCCC"
+      viewBox="0 0 24 24"
+    >
+      <title>keyboard_arrow_down</title>
+      <path d="M7.406 8.578l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z"></path>
+    </svg>
+  );
+}
+
+export function keyboardArrowRight() {
+  return (
+    <svg
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="#CCCCCC"
+      viewBox="0 0 24 24"
+    >
+      <title>keyboard_arrow_right</title>
+      <path d="M8.578 16.594l4.594-4.594-4.594-4.594 1.406-1.406 6 6-6 6z"></path>
+    </svg>
+  );
+}
+
+export function PreviewIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="22px"
+      viewBox="0 0 24 24"
+      width="22px"
+      fill="#cccccc"
+    >
+      <path d="M0 0h24v24H0V0z" fill="none" />
+      <path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.89-2-2-2zm0 14H5V8h14v10z" />
+    </svg>
+  );
+}
