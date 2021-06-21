@@ -1,0 +1,6 @@
+[
+  { "id": "1", "title": "projects", "image": "/images/icons/dashboard.svg" },
+  { "id": "1", "title": "github", "image": "/images/icons/github.svg" },
+  { "id": "2", "title": "search", "image": "/images/icons/search.svg" },
+  { "id": "3", "title": "settings", "image": "/images/icons/settings.svg" }
+]

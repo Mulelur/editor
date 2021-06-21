@@ -1,0 +1,27 @@
+[
+  {
+    "title": "File",
+    "id": "1",
+    "contextMenu": [
+      { "title": "New File", "divider": "false" },
+      { "title": "New Window", "divider": "false" }
+    ]
+  },
+  {
+    "title": "Edit",
+    "id": "2",
+    "contextMenu": [
+      { "title": "Undo", "divider": "false" },
+      { "title": "Redo", "divider": "true" },
+      { "title": "Cut", "divider": "false" },
+      { "title": "Copy", "divider": "false" },
+      { "title": "Paste", "divider": "false" }
+    ]
+  },
+  {
+    "title": "Selection",
+    "id": "3",
+    "contextMenu": []
+  },
+  { "title": "View", "id": "4", "contextMenu": [] }
+]
