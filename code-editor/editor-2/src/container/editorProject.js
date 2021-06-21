@@ -40,11 +40,9 @@ export default function EditorProjectContainer() {
         },
       });
     }
-    console.log(state.tree);
-    console.log(state.selected);
     const isFolder = node.hasOwnProperty("children");
 
-    const renderFileFolderToolbar = (isFolder, caption, id) => {
+    const renderFileFolderToolbar = (isFolder, caption, id, icon) => {
       return (
         <>
           <EditorProject.TreeNode>
@@ -77,14 +75,20 @@ export default function EditorProjectContainer() {
                 />
               )
             ) : (
-              <InsertDriveFileIcon />
+              <EditorProject.Image src={icon} />
             )}
             {id !== "react-ui-tree" ? (
               <EditorProject.TreeNodeText
                 onClick={() => {
                   // handelClick(node);
+
                   if (isFolder) {
                     dispatch({ type: "select", payload: node });
+                  } else {
+                    dispatch({
+                      type: "modalActions",
+                      payload: { type: "addItem", value: node },
+                    });
                   }
                 }}
               >
@@ -167,7 +171,7 @@ export default function EditorProjectContainer() {
         holdToDisplay={-1}
         // onItemClick={handleContextClick}
       >
-        {renderFileFolderToolbar(isFolder, node.module, node.id)}
+        {renderFileFolderToolbar(isFolder, node.module, node.id, node.icon)}
       </ContextMenuTrigger>
     );
   };
@@ -179,7 +183,7 @@ export default function EditorProjectContainer() {
       </EditorProject.TreeHeader>
       <EditorProject.TreeContent>
         <Tree
-          draggable
+          // draggable
           paddingLeft={10}
           tree={state.tree}
           onChange={handleChange}

@@ -13,3 +13,18 @@ export const Container = styled.div`
   align-items: center;
   padding: 0 1rem;
 `;
+
+export const StatusBar = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+`;
+
+export const Status = styled.span`
+  font-size: 1.2rem;
+  padding: 1rem;
+`;
+
+export const Span = styled.span`
+  font-size: 1.2rem;
+`;

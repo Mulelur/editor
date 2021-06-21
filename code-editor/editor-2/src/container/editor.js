@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer, useState, useEffect } from "react";
 import Editor from "../components/editor";
 import EditorMenuContainer from "./editorMenu";
 import EditorMonacoContainer from "./editorMonaco";
@@ -7,6 +7,9 @@ import { EditorContextTree } from "../context/editorContext";
 import EditorWorkBenchContainer from "./editorWorkBench";
 import _, { clone } from "lodash";
 import deepdash from "deepdash";
+import EditorModalContainer from "./editorModal";
+import { getExtenton } from "../exters/getExtention";
+import js from "../assets/Licons/file_type_js.svg";
 
 deepdash(_);
 
@@ -19,10 +22,7 @@ export default function EditorContainer() {
   };
   const initialState = {
     selected: initialTreeState,
-    activeFile: {
-      file: "",
-      modue: "",
-    },
+    activeFile: {},
     inputValue: "",
     selectedArry: [],
     tree: initialTreeState,
@@ -33,16 +33,27 @@ export default function EditorContainer() {
     folderCollapsed: false,
     nodefolderCollapsed: false,
     cloneItem: {},
-    workBench: {
-      encoding: "UTF-8",
-      language: "javascript",
-      lndentation: "2",
-      lineColumn: "2",
-    },
+    workBench: [
+      { type: "lineColumn", value: "2" },
+      { type: "encoding", value: "UTF-8" },
+      { type: "lndentation", value: "2" },
+    ],
     sender: "",
   };
   const reducer = (state = initialState, action) => {
+    console.log(state.activeFile);
     switch (action.type) {
+      case "activeFile":
+        switch (action.payload.type) {
+          case "changeValue":
+            // state.activeFile.file.value.concat(action.payload.value);
+            state.activeFile.value = action.payload.value;
+            state.activeFile.mode = "unSaved";
+            return { ...state };
+
+          default:
+            throw new Error();
+        }
       case "addItem":
         switch (action.payload.type) {
           case "folder":
@@ -63,6 +74,8 @@ export default function EditorContainer() {
               return [cloneItem];
             });
             state.tree = { ...newTree[0][0] };
+            state.selected = newFolderItem;
+            state.showInput.value = "";
             state.showInput.state = false;
             const nf = _.findDeep(
               state.tree,
@@ -72,14 +85,18 @@ export default function EditorContainer() {
               }
             );
             nf.value.collapsed = false;
+            console.log(state.selectedArry);
             return { ...state };
           case "file":
+            // const language = { ...getExtenton(action.payload.title) };
             const newFileItem = {
               id: `${Date.now()}`,
               leaf: true,
               module: action.payload.title,
               value: "",
-              language: "javascript",
+              mode: "saved",
+              language: "html",
+              icon: "",
             };
 
             const newFileTree = _.mapDeep(
@@ -99,6 +116,9 @@ export default function EditorContainer() {
               }
             );
             state.tree = { ...newFileTree[0][0] };
+            state.selectedArry.push(newFileItem);
+            state.activeFile = newFileItem;
+            state.showInput.value = "";
             state.showInput.state = false;
             const n = _.findDeep(
               state.tree,
@@ -108,6 +128,15 @@ export default function EditorContainer() {
               }
             );
             n.value.collapsed = false;
+            // const i = _.findDeep(
+            //   state.tree,
+            //   (item) => item.id === newFileItem.id,
+            //   {
+            //     childrenPath: "children",
+            //   }
+            // );
+            // i.value.icon = { ...language.icon };
+            // console.log(i);
             return { ...state };
           default:
             throw new Error();
@@ -164,18 +193,44 @@ export default function EditorContainer() {
           default:
             throw new Error();
         }
+      case "removePreview":
+        // state.selectedArry.pop(action.payload.value);
+        action.payload.value.indexOf();
+        return { ...state };
+      case "modalActions":
+        switch (action.payload.type) {
+          case "delete":
+            state.selectedArry.splice(action.payload.value, 1);
+            return { ...state };
+          case "addItem":
+            state.selectedArry.push(action.payload.value);
+            state.activeFile.file = action.payload.value;
+            return { ...state };
+          case "setActive":
+            state.activeFile.file = action.payload.value;
+            return { ...state };
+          default:
+            throw new Error();
+        }
       default:
         throw new Error();
     }
   };
   const [state, dispatch] = useReducer(reducer, initialState);
+  // useEffect(() => {
+  //   console.log("working");
+  //   dispatch({ type: "removePreview", payload: { value: state.selectedArry } });
+  // }, [state]);
   return (
     <EditorContextTree.Provider value={{ state, dispatch }}>
       <Editor>
         <EditorMenuContainer />
         <Editor.Row>
           <EdiortSideContainer />
-          <EditorMonacoContainer />
+          <Editor.Col>
+            <EditorModalContainer />
+            <EditorMonacoContainer />
+          </Editor.Col>
         </Editor.Row>
         <EditorWorkBenchContainer />
       </Editor>

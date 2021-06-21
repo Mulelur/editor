@@ -10,6 +10,8 @@ import {
   FrameActive,
   PreviewTitle,
   Delete,
+  IconWapper,
+  Image,
 } from "./styles/editorModal";
 
 export default function EditorModal({ children, ...restProps }) {
@@ -58,4 +60,15 @@ EditorModal.PreviewTitle = function EditorModalPreviewTitle({
 
 EditorModal.Delete = function EditorModalDelete({ children, ...restProps }) {
   return <Delete {...restProps}>{children}</Delete>;
+};
+
+EditorModal.IconWapper = function EditorModalIconWapper({
+  children,
+  ...restProps
+}) {
+  return <IconWapper {...restProps}>{children}</IconWapper>;
+};
+
+EditorModal.Image = function EditorModalImage({ ...restProps }) {
+  return <Image {...restProps} />;
 };

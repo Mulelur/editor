@@ -4,12 +4,10 @@ export const Container = styled.div`
   border-top: 1px solid #3d3636;
   background-color: #1e1e1e;
   height: 3.5rem;
-  width: calc(100% - 50px);
   display: flex;
   position: relative;
   box-shadow-color-1: 0 50px 100px -20px rgba(50, 50, 93, 0.25),
     0 30px 60px -30px rgba(0, 0, 0, 0.3);
-  max-width: 100%;
 `;
 
 export const Title = styled.h4`
@@ -68,19 +66,42 @@ export const FrameActive = styled.div`
   border-right: 1px solid #3d3636;
   margin-right: auto;
   border-bottom: 1px solid #ffff;
+  padding-left: 0.3rem;
 `;
 
 export const PreviewTitle = styled.h4`
   font-size: 1.3rem;
-  font-style: italic;
+  font-style: ${({ mode }) => (mode === "preview" ? "italic" : "normal")};
   font-weight: normal;
   color: #ffffff;
+  margin-right: auto;
+  padding-left: 1rem;
+  max-width: 7.5rem;
 `;
 
 export const Delete = styled.div`
-  position: absolute;
-  right: 0;
   padding: 3px;
   padding-right: 10px;
+  display: flex;
   background-color: #302d2d;
+  align-items: center;
+  position: relative;
 `;
+
+export const IconWapper = styled.div`
+  position: absolute;
+  right: 7.3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #302d2d;
+  width: 21px;
+  height: 21px;
+  transition: opacity 0.1s;
+
+  &:hover {
+    opacity: 0;
+  }
+`;
+
+export const Image = styled.img``;
