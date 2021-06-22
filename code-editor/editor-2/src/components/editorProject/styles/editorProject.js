@@ -38,7 +38,7 @@ export const TreeNodeTitle = styled.p`
   margin-right: auto;
 `;
 
-export const TreeNodeText = styled.button`
+export const TreeNodeInput = styled.input`
   padding-left: 3px;
   background-color: transparent;
   border: none;
@@ -47,14 +47,14 @@ export const TreeNodeText = styled.button`
   text-align: start;
   outline: none;
   margin: 0.25rem 0;
+  ${({ treeNodeInput }) =>
+    treeNodeInput === false && "border: 1px solid #494242;"}
 
+  padding: 0.3rem;
+  border-radius: 0.2rem;
   &:hover {
     color: #f9f7f7;
   }
-
-  // &:focus {
-  //   background-color: #2e2644;
-  // }
 `;
 
 export const ToolBar = styled.div`

@@ -6,7 +6,7 @@ import {
   Image,
   TreeContent,
   TreeNode,
-  TreeNodeText,
+  TreeNodeInput,
   ToolBar,
   ToolBarIcon,
   Input,
@@ -48,11 +48,10 @@ EditorProject.TreeNode = function EditorProjectTreeNode({
 }) {
   return <TreeNode {...restProps}>{children}</TreeNode>;
 };
-EditorProject.TreeNodeText = function EditorProjectTreeNodeText({
-  children,
+EditorProject.TreeNodeInput = function EditorProjectTreeNodeInput({
   ...restProps
 }) {
-  return <TreeNodeText {...restProps}>{children}</TreeNodeText>;
+  return <TreeNodeInput {...restProps} />;
 };
 
 EditorProject.ToolBar = function EditorProjectToolBar({
@@ -77,12 +76,12 @@ EditorProject.Form = function EditorProjectForm({ children, ...restProps }) {
   return <Form {...restProps}> {children}</Form>;
 };
 
-EditorProject.SelectedTreeNodeText = function EditorProjectSelectedTreeNodeText({
-  children,
-  ...restProps
-}) {
-  return <SelectedTreeNodeText {...restProps}>{children}</SelectedTreeNodeText>;
-};
+EditorProject.SelectedTreeNodeText =
+  function EditorProjectSelectedTreeNodeText({ children, ...restProps }) {
+    return (
+      <SelectedTreeNodeText {...restProps}>{children}</SelectedTreeNodeText>
+    );
+  };
 
 EditorProject.TreeNodeTitle = function EditorProjectTreeNodeTitle({
   children,

@@ -42,6 +42,10 @@ export default function EditorContainer() {
     preView: true,
     media: { width: "50" },
     sender: "",
+    treeNodeInput: {
+      disabled: false,
+      id: "",
+    },
   };
   const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -183,6 +187,10 @@ export default function EditorContainer() {
             );
             n.value.collapsed = !action.payload.preState;
             return { ...state };
+          case "treeNodeInput":
+            state.treeNodeInput.disabled = !action.payload.value;
+            state.treeNodeInput.id = action.payload.id;
+            return { ...state };
           default:
             throw new Error();
         }
@@ -207,12 +215,34 @@ export default function EditorContainer() {
             state.selectedArry.splice(action.payload.value, 1);
             return { ...state };
           case "addItem":
-            state.selectedArry.push(action.payload.value);
-            state.activeFile = action.payload.value;
-            state.activeFile.mode = "preview";
+            if (state.selectedArry.includes(action.payload.value)) {
+              return { ...state };
+            } else {
+              state.selectedArry.push(action.payload.value);
+              state.activeFile = action.payload.value;
+              state.activeFile.mode = "preview";
+            }
             return { ...state };
           case "setActive":
             state.activeFile = action.payload.value;
+            return { ...state };
+          default:
+            throw new Error();
+        }
+      case "contextClick":
+        switch (action.payload.type) {
+          case "rename":
+            const renameObj = _.findDeep(
+              state.tree,
+              (item) => item.id === action.payload.id,
+              {
+                childrenPath: "children",
+              }
+            );
+            const language = { ...getExtenton(action.payload.value) };
+            renameObj.value.language = language.language;
+            renameObj.value.icon = language.icon;
+            renameObj.value.module = action.payload.value;
             return { ...state };
           default:
             throw new Error();
@@ -223,9 +253,14 @@ export default function EditorContainer() {
   };
   const [state, dispatch] = useReducer(reducer, initialState);
   // useEffect(() => {
-  //   console.log("working");
-  //   dispatch({ type: "removePreview", payload: { value: state.selectedArry } });
-  // }, [state]);
+  //   dispatch({
+  //     type: "toggel",
+  //     payload: {
+  //       type: "treeNodeInput",
+  //       value: state.treeNodeInput.disabled,
+  //     },
+  //   });
+  // }, [state.treeNodeInput]);
   return (
     <EditorContextTree.Provider value={{ state, dispatch }}>
       <Editor>

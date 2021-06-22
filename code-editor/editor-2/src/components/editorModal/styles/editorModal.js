@@ -19,18 +19,8 @@ export const Title = styled.h4`
   top: 5px;
 `;
 
-export const Frame = styled.div`
-  height: 3.4rem;
-  width: 12.5rem;
-  background-color: #302d2d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-right: 1px solid #3d3636;
-  margin-right: auto;
-`;
 export const Active = styled.div`
-  border-bottom: 1px solid #ffff";
+border-bottom: 1px solid #ffff";
 `;
 
 export const Inner = styled.div`
@@ -54,6 +44,20 @@ export const Actions = styled.div`
 export const FrameContainer = styled.div`
   position: relative;
   display: flex;
+  // overflow-x: scroll;
+  max-width: 50vw;
+`;
+
+export const Frame = styled.div`
+  height: 3.4rem;
+  width: 12.5rem;
+  background-color: #302d2d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #3d3636;
+  margin-right: auto;
+  padding-left: 0.3rem;
 `;
 
 export const FrameActive = styled.div`
