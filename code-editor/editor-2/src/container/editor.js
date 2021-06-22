@@ -5,7 +5,7 @@ import EditorMonacoContainer from "./editorMonaco";
 import EdiortSideContainer from "./editorSide";
 import { EditorContextTree } from "../context/editorContext";
 import EditorWorkBenchContainer from "./editorWorkBench";
-import _, { clone } from "lodash";
+import _, { clone, indexOf } from "lodash";
 import deepdash from "deepdash";
 import EditorModalContainer from "./editorModal";
 import { getExtenton } from "../exters/getExtention";
@@ -191,6 +191,9 @@ export default function EditorContainer() {
             state.treeNodeInput.disabled = !action.payload.value;
             state.treeNodeInput.id = action.payload.id;
             return { ...state };
+          case "preView":
+            state.preView = !action.payload.prevState;
+            return { ...state };
           default:
             throw new Error();
         }
@@ -213,6 +216,12 @@ export default function EditorContainer() {
         switch (action.payload.type) {
           case "delete":
             state.selectedArry.splice(action.payload.value, 1);
+            if (state.selectedArry.length === 0) {
+              state.activeFile = {};
+            } else {
+              state.activeFile =
+                state.selectedArry[state.selectedArry.length - 1];
+            }
             return { ...state };
           case "addItem":
             if (state.selectedArry.includes(action.payload.value)) {
@@ -244,6 +253,29 @@ export default function EditorContainer() {
             renameObj.value.icon = language.icon;
             renameObj.value.module = action.payload.value;
             return { ...state };
+          case "delete":
+            const deleteObj = _.findDeep(
+              state.tree,
+              (item) => item.id === action.payload.id,
+              {
+                childrenPath: "children",
+              }
+            );
+            // if()
+            if (deleteObj) {
+              const i = deleteObj.parent.children.indexOf(deleteObj.value);
+              deleteObj.parent.children.splice(i, 1);
+              const i2 = state.selectedArry.indexOf(deleteObj.value);
+              state.selectedArry.splice(i2, 1);
+              console.log(state.selectedArry);
+              if (state.selectedArry.length === 0) {
+                state.activeFile = {};
+              } else {
+                state.activeFile =
+                  state.selectedArry[state.selectedArry.length - 1];
+              }
+            }
+            return { ...state };
           default:
             throw new Error();
         }
@@ -252,6 +284,7 @@ export default function EditorContainer() {
     }
   };
   const [state, dispatch] = useReducer(reducer, initialState);
+  console.log(state.preView);
   // useEffect(() => {
   //   dispatch({
   //     type: "toggel",

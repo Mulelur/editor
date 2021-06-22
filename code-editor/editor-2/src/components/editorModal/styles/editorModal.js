@@ -17,6 +17,7 @@ export const Title = styled.h4`
   margin-rigth: auto;
   position: absolute;
   top: 5px;
+  overflow: hidden;
 `;
 
 export const Active = styled.div`
@@ -81,6 +82,7 @@ export const PreviewTitle = styled.h4`
   margin-right: auto;
   padding-left: 1rem;
   max-width: 7.5rem;
+  overflow: hidden;
 `;
 
 export const Delete = styled.div`

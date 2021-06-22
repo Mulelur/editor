@@ -43,13 +43,6 @@ export default function EditorProjectContainer() {
   const handleContextClick = (e, { action, name: id }) => {
     switch (action) {
       case "rename":
-        // dispatch({
-        //   type: "contextClick",
-        //   payload: {
-        //     type: "rename",
-        //     value: id,
-        //   },
-        // });
         dispatch({
           type: "toggel",
           payload: {
@@ -60,7 +53,11 @@ export default function EditorProjectContainer() {
         });
         break;
       case "delete":
-        deleteFromTree(state, id);
+        // deleteFromTree(state, id);
+        dispatch({
+          type: "contextClick",
+          payload: { type: "delete", id: id, state: state },
+        });
         break;
       default:
     }
@@ -131,6 +128,7 @@ export default function EditorProjectContainer() {
                       type: "modalActions",
                       payload: { type: "addItem", value: node },
                     });
+                    dispatch({ type: "setActiveFile", payload: node });
                   }
                 }}
                 onSubmit={(e) => {
@@ -152,6 +150,7 @@ export default function EditorProjectContainer() {
                     value={caption}
                     disabled={state.treeNodeInput.disabled}
                     autoFocus
+                    autocomplete="off"
                     onChange={(e) => {
                       dispatch({
                         type: "contextClick",

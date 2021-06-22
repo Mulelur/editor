@@ -73,7 +73,17 @@ export default function EditorModalContainer() {
         </EditorModal.FrameContainer>
         <EditorModal.Actions>
           <EditorSplitWindowIcon />
-          <PreviewIcon />
+          <PreviewIcon
+            onClick={() => {
+              dispatch({
+                type: "toggel",
+                payload: {
+                  type: "preView",
+                  prevState: state.preView,
+                },
+              });
+            }}
+          />
           <EditorkeyboardControl />
         </EditorModal.Actions>
       </EditorModal.Inner>

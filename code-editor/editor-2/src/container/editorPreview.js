@@ -6,13 +6,13 @@ import { EditorContextTree } from "../context/editorContext";
 export default function EditorPreviewContainer() {
   const { state } = useContext(EditorContextTree);
   return (
-    <EditorPreview>
+    <EditorPreview preView={state.preView}>
       <EditorPreview.Header>
         <EditorPreview.Title>Preview</EditorPreview.Title>
       </EditorPreview.Header>
       <EditorPreview.Body>
         {state.activeFile.id && (
-          <LiveProvider code={state.activeFile.value} noInline={true}>
+          <LiveProvider code={state.activeFile.value}>
             <LiveError />
             <LivePreview />
           </LiveProvider>

@@ -11,6 +11,7 @@ import rollup from "../assets/Licons/file_type_rollup.svg";
 import reactjs from "../assets/Licons/file_type_reactjs.svg";
 import java from "../assets/Licons/file_type_class.svg";
 import css from "../assets/Licons/file_type_css.svg";
+import gitignore from "../assets/Licons/file_type_git.svg";
 
 export function getExtenton(title) {
   const arr = title.split(".");
@@ -34,6 +35,8 @@ export function getExtenton(title) {
       return { language: "java", icon: java };
     case "py":
       return { language: "python", icon: python };
+    case "gitignore":
+      return { language: "txt", icon: gitignore };
     default:
       return { language: "txt", icon: defaultIcon };
   }

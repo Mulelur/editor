@@ -5,7 +5,7 @@ import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import "../components/editorMenu/styles/react-contextmenu.css";
 
 function handleContextClick(e, data) {
-  console.log(data.foo);
+  // console.log(data.foo);
 }
 
 export default function EditorMenuContainer() {
